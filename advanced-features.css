@@ -1,0 +1,523 @@
+/* ============================================================================
+   ADVANCED FEATURES STYLES - Promptify Frontend
+   ============================================================================
+   Complete CSS for all advanced enhancement features
+   ============================================================================ */
+
+/* ============================================================================
+   1. SCROLL PROGRESS BAR
+   ============================================================================ */
+
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3B82F6, #8B5CF6, #EC4899);
+  z-index: 9999;
+  width: 0;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+  transition: width 0.1s ease-out;
+}
+
+/* ============================================================================
+   2. BACK-TO-TOP BUTTON
+   ============================================================================ */
+
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.8);
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+  z-index: 99;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+}
+
+.back-to-top:hover {
+  background: linear-gradient(135deg, #8B5CF6, #EC4899);
+  transform: translateY(10px) scale(1);
+  box-shadow: 0 12px 32px rgba(139, 92, 246, 0.5);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2.5;
+}
+
+/* ============================================================================
+   3. PARTICLE CANVAS SYSTEM
+   ============================================================================ */
+
+.particle-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+
+.particle-canvas.layer-1 {
+  z-index: 1;
+}
+
+.particle-canvas.layer-2 {
+  z-index: 2;
+}
+
+/* ============================================================================
+   4. 3D CARD TRANSFORMS
+   ============================================================================ */
+
+.pricing-card,
+.blog-card,
+.gallery-item,
+.feature-card {
+  transform-style: preserve-3d;
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.pricing-card:hover,
+.blog-card:hover,
+.gallery-item:hover,
+.feature-card:hover {
+  box-shadow: 0 24px 48px rgba(59, 130, 246, 0.25);
+}
+
+/* ============================================================================
+   5. PARALLAX SCROLLING
+   ============================================================================ */
+
+[data-parallax] {
+  will-change: transform;
+}
+
+/* ============================================================================
+   6. GLITCH EFFECTS
+   ============================================================================ */
+
+.hero-title.glitch {
+  position: relative;
+  color: #E2E8F0;
+}
+
+.hero-title.glitch::before,
+.hero-title.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.hero-title.glitch::before {
+  color: rgba(236, 72, 153, 0.9);
+  animation: glitch-1 0.3s infinite;
+  z-index: -1;
+}
+
+.hero-title.glitch::after {
+  color: rgba(59, 130, 246, 0.9);
+  animation: glitch-2 0.3s infinite;
+  z-index: -2;
+}
+
+@keyframes glitch-1 {
+  0% { clip-path: inset(0 0 0 0); }
+  20% { clip-path: inset(0 0 65% 0); }
+  40% { clip-path: inset(28% 0 0 0); }
+  60% { clip-path: inset(44% 0 0 0); }
+  80% { clip-path: inset(58% 0 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes glitch-2 {
+  0% { clip-path: inset(0 0 0 0); }
+  20% { clip-path: inset(0 0 0 0); }
+  40% { clip-path: inset(0 0 58% 0); }
+  60% { clip-path: inset(0 0 44% 0); }
+  80% { clip-path: inset(0 0 28% 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes glitch-anim {
+  0%, 100% {
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  20% {
+    text-shadow: -2px 0 #EC4899, 2px 0 #3B82F6;
+  }
+  40% {
+    text-shadow: -4px 0 #3B82F6, 4px 0 #EC4899;
+  }
+  60% {
+    text-shadow: 2px 0 #EC4899, -2px 0 #3B82F6;
+  }
+  80% {
+    text-shadow: 3px 0 #3B82F6, -3px 0 #EC4899;
+  }
+}
+
+/* ============================================================================
+   7. MAGNETIC BUTTON EFFECTS
+   ============================================================================ */
+
+button,
+.btn-try-free,
+.btn-get-started,
+.btn-pricing {
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.2, 1);
+  will-change: transform;
+}
+
+/* ============================================================================
+   8. HERO GLOW PULSE
+   ============================================================================ */
+
+.hero-glow-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+  animation: glow-pulse 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+    filter: blur(20px);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.3;
+    filter: blur(30px);
+  }
+}
+
+/* ============================================================================
+   9. ANIMATED COUNTERS
+   ============================================================================ */
+
+[data-count] {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #3B82F6;
+}
+
+/* ============================================================================
+   10. TESTIMONIALS AUTO-ROTATION
+   ============================================================================ */
+
+.testimonials-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-item {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+  pointer-events: none;
+}
+
+.testimonial-item.active {
+  position: relative;
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* ============================================================================
+   11. SCROLL-TRIGGERED ANIMATIONS (REVEAL)
+   ============================================================================ */
+
+[data-reveal],
+.pricing-card,
+.blog-card,
+.gallery-item,
+.feature-card,
+.contact-info-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+[data-reveal].revealed,
+.pricing-card.revealed,
+.blog-card.revealed,
+.gallery-item.revealed,
+.feature-card.revealed,
+.contact-info-card.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animation */
+.pricing-card:nth-child(1).revealed,
+.blog-card:nth-child(1).revealed,
+.gallery-item:nth-child(1).revealed {
+  transition-delay: 0s;
+}
+
+.pricing-card:nth-child(2).revealed,
+.blog-card:nth-child(2).revealed,
+.gallery-item:nth-child(2).revealed {
+  transition-delay: 0.1s;
+}
+
+.pricing-card:nth-child(3).revealed,
+.blog-card:nth-child(3).revealed,
+.gallery-item:nth-child(3).revealed {
+  transition-delay: 0.2s;
+}
+
+.pricing-card:nth-child(4).revealed,
+.blog-card:nth-child(4).revealed,
+.gallery-item:nth-child(4).revealed {
+  transition-delay: 0.3s;
+}
+
+/* ============================================================================
+   12. RIPPLE EFFECT ON CLICK
+   ============================================================================ */
+
+button,
+a,
+.clickable {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+  pointer-events: none;
+  transform: scale(0);
+  animation: ripple-expand 0.6s ease-out;
+}
+
+@keyframes ripple-expand {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ============================================================================
+   ENHANCED HOVER STATES
+   ============================================================================ */
+
+.pricing-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.08));
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 16px;
+  padding: 32px 24px;
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.pricing-card:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+  border-color: rgba(139, 92, 246, 0.4);
+  transform: translateY(-4px);
+}
+
+.blog-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+}
+
+.blog-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.blog-card:hover::before {
+  left: 100%;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-item img {
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* ============================================================================
+   SHINE & GLOW EFFECTS
+   ============================================================================ */
+
+.feature-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.08));
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.feature-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.5s ease;
+}
+
+.feature-card:hover::after {
+  left: 100%;
+}
+
+/* ============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .back-to-top {
+    width: 45px;
+    height: 45px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .scroll-progress-bar {
+    height: 2px;
+  }
+
+  .pricing-card,
+  .blog-card,
+  .gallery-item,
+  .feature-card {
+    transform: none !important;
+  }
+
+  .pricing-card:hover,
+  .blog-card:hover,
+  .gallery-item:hover,
+  .feature-card:hover {
+    transform: none !important;
+  }
+
+  [data-reveal],
+  .pricing-card,
+  .blog-card,
+  .gallery-item,
+  .feature-card,
+  .contact-info-card {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+}
+
+/* ============================================================================
+   REDUCED MOTION SUPPORT
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .scroll-progress-bar,
+  .back-to-top,
+  .pricing-card,
+  .blog-card,
+  .gallery-item,
+  .feature-card,
+  [data-reveal] {
+    transition: none !important;
+  }
+}
+
+/* ============================================================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================================================ */
+
+@supports (backdrop-filter: blur(10px)) {
+  .pricing-card {
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Enable hardware acceleration */
+.pricing-card,
+.blog-card,
+.gallery-item,
+.feature-card,
+button,
+.back-to-top {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* End of advanced-features.css */

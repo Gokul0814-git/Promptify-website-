@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auth Test</title>
+    <script>
+        // Check authentication immediately
+        (function() {
+            const username = localStorage.getItem('promptify.username');
+            const currentPath = window.location.pathname;
+            
+            console.log('Auth check - Username:', username);
+            console.log('Auth check - Current path:', currentPath);
+            
+            // If not authenticated and not on login/signup pages, redirect to login
+            if (!username && !currentPath.includes('login.html') && !currentPath.includes('signup.html')) {
+                console.log('Redirecting to login...');
+                window.location.replace('/login.html');
+                return;
+            }
+            
+            // If authenticated and on login/signup pages, redirect to main page
+            if (username && (currentPath.includes('login.html') || currentPath.includes('signup.html'))) {
+                console.log('Redirecting to main page...');
+                window.location.replace('/');
+                return;
+            }
+        })();
+    </script>
+</head>
+<body>
+    <h1>Authentication Test</h1>
+    <p>If you see this page, authentication check is in progress...</p>
+    <p>Check console for debug info.</p>
+</body>
+</html>

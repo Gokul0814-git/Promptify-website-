@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promptify - AI Prompt Management Platform</title>
+    <script>
+        // Immediate authentication check
+        (function() {
+            const username = localStorage.getItem('promptify.username');
+            const currentPath = window.location.pathname;
+            
+            console.log('Auth check - Username:', username);
+            console.log('Auth check - Current path:', currentPath);
+            
+            // If not authenticated and not on login/signup pages, redirect to login
+            if (!username && !currentPath.includes('login.html') && !currentPath.includes('signup.html')) {
+                console.log('Redirecting to login...');
+                window.location.replace('/login.html');
+                return;
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Local vendor copy is preferred for offline. If missing, CDN will load. -->
+    <script src="vendor/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="enhancements.css">
+    <link rel="stylesheet" href="advanced-features.css">
+    <link rel="stylesheet" href="promptify-bot-ai.css">
+    <link rel="stylesheet" href="engine-premium.css">
+</head>
+<body>
+    <div data-include="partials/loading-overlay.html"></div>
+    <div data-include="partials/navbar.html"></div>
+
+    <div data-include="partials/home.html"></div>
+
+    <div data-include="partials/engine.html"></div>
+
+    <div data-include="partials/pricing.html"></div>
+
+    <div data-include="partials/blog.html"></div>
+
+    <div data-include="partials/faq.html"></div>
+
+    <div data-include="partials/about.html"></div>
+
+    <div data-include="partials/contact.html"></div>
+
+    <!-- Chat widget removed -->
+
+
+
+    <div data-include="partials/footer.html"></div>
+
+    <script src="include-partials.js"></script>
+    <script src="script.js"></script>
+    <script src="enhancements.js"></script>
+    <script src="advanced-features.js"></script>
+    <script src="promptify-bot-ai.js"></script>
+    <script src="engine-premium.js"></script>
+    <script src="auth.js"></script>
+    
+    // Final authentication check -->
+    <script>
+        // Double-check authentication after page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('promptify.username');
+            const currentPath = window.location.pathname;
+            const urlParams = new URLSearchParams(window.location.search);
+            const loginSuccess = urlParams.get('login') === 'success';
+            
+            console.log('Final auth check - Username:', username);
+            console.log('Login success flag:', loginSuccess);
+            
+            // If not authenticated and not on login/signup pages, redirect to login
+            if (!username && !currentPath.includes('login.html') && !currentPath.includes('signup.html')) {
+                console.log('Final redirect to login...');
+                window.location.replace('/login.html');
+                return;
+            }
+            
+            // Update UI for logged-in user
+            if (username) {
+                console.log('Updating UI for logged-in user:', username);
+                
+                // Wait for partials to load before updating navbar
+                document.addEventListener('partialsLoaded', () => {
+                    console.log('Partials loaded, updating navbar...');
+                    updateNavbarForUser(username);
+                });
+                
+                // Also try immediately in case partials are already loaded
+                setTimeout(() => {
+                    updateNavbarForUser(username);
+                }, 200);
+                
+                // If this is a fresh login, clean URL
+                if (loginSuccess) {
+                    console.log('Fresh login detected, cleaning URL...');
+                    window.history.replaceState({}, document.title, '/');
+                }
+            }
+        });
+        
+        function updateNavbarForUser(username) {
+            const navButtons = document.getElementById('navButtons');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            console.log('Found navButtons:', !!navButtons);
+            console.log('Found navMenu:', !!navMenu);
+            
+            if (navButtons && navMenu) {
+                // Keep navigation menu but add user info to navButtons
+                navMenu.style.display = 'flex'; // Ensure menu is visible
+                
+                // Add user info to navButtons while keeping hamburger
+                navButtons.innerHTML = `
+                    <div class="user-info">
+                        <span class="username-display"> ${username}</span>
+                        <button class="logout-btn" onclick="logout()">Logout</button>
+                    </div>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                `;
+                
+                // Add styles for user info
+                const style = document.createElement('style');
+                style.textContent = `
+                    .user-info {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                        margin-left: 2rem;
+                    }
+                    .username-display {
+                        color: #E2E8F0;
+                        font-weight: 600;
+                        font-size: 1rem;
+                    }
+                    .logout-btn {
+                        background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
+                        color: white;
+                        border: none;
+                        padding: 0.5rem 1rem;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        font-size: 0.9rem;
+                        font-weight: 500;
+                        transition: transform 0.2s ease, box-shadow 0.2s ease;
+                    }
+                    .logout-btn:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                    }
+                    .nav-container {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 100%;
+                        padding: 0 2rem;
+                    }
+                    .nav-menu {
+                        display: flex;
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+                        gap: 2rem;
+                        position: absolute;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+                    .nav-buttons {
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                    }
+                    @media (max-width: 768px) {
+                        .user-info {
+                            flex-direction: column;
+                            gap: 0.5rem;
+                            margin-left: 0;
+                            margin-bottom: 0.5rem;
+                        }
+                        .username-display {
+                            font-size: 0.9rem;
+                        }
+                        .logout-btn {
+                            padding: 0.4rem 0.8rem;
+                            font-size: 0.8rem;
+                        }
+                        .nav-buttons {
+                            flex-direction: column;
+                        }
+                        .nav-container {
+                            padding: 0 1rem;
+                        }
+                        .nav-menu {
+                            gap: 1rem;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                console.log('UI updated successfully for user:', username);
+            } else {
+                console.error('Required elements not found!');
+            }
+        }
+        
+        function logout() {
+            console.log('Logout clicked');
+            localStorage.removeItem('promptify.username');
+            window.location.replace('/login.html');
+        }
+        
+        // FAQ Toggle Function - Global scope for all FAQ interactions
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const toggle = element.querySelector('.faq-toggle');
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-toggle').textContent = '+';
+                }
+            });
+            
+            // Toggle current FAQ item
+            if (isActive) {
+                faqItem.classList.remove('active');
+                toggle.textContent = '+';
+            } else {
+                faqItem.classList.add('active');
+                toggle.textContent = '−';
+            }
+        }
+    </script>
+</body>
+</html>

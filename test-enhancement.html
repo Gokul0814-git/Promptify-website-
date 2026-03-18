@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Enhancement</title>
+</head>
+<body>
+    <h1>Test Enhancement</h1>
+    <textarea id="testInput" placeholder="Enter prompt..." style="width: 300px; height: 100px;"></textarea>
+    <br><br>
+    <button onclick="testEnhance()">Enhance</button>
+    <br><br>
+    <div id="testOutput" style="width: 300px; height: 100px; border: 1px solid #ccc;"></div>
+
+    <script>
+        async function testEnhance() {
+            const input = document.getElementById('testInput').value;
+            console.log('Testing enhancement with:', input);
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/enhance', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: input })
+                });
+                
+                const data = await response.json();
+                console.log('Response:', data);
+                
+                document.getElementById('testOutput').value = data.enhancedPrompt || 'Error: ' + (data.error || 'Unknown error');
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('testOutput').value = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

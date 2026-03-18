@@ -1,0 +1,429 @@
+<!-- ============================================================================
+     ADVANCED FEATURES - HTML SNIPPETS & EXAMPLES
+     ============================================================================
+     Copy and paste these snippets into your index.html to enable specific features
+     ============================================================================ -->
+
+<!-- 
+  1. ANIMATED COUNTERS EXAMPLE
+  Add this to show animated number counters
+  The numbers will animate from 0 to the target when scrolled into view
+-->
+<section class="stats-section">
+  <div class="container">
+    <h2>By The Numbers</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3><span data-count="10000">10000</span>+</h3>
+        <p>Happy Users</p>
+      </div>
+      <div class="stat-card">
+        <h3><span data-count="500">500</span>M</h3>
+        <p>Prompts Generated</p>
+      </div>
+      <div class="stat-card">
+        <h3><span data-count="99">99</span>%</h3>
+        <p>Uptime</p>
+      </div>
+      <div class="stat-card">
+        <h3><span data-count="24">24</span>/7</h3>
+        <p>Support Available</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+  2. TESTIMONIALS AUTO-ROTATION EXAMPLE
+  Add this to show automatically rotating testimonials
+  It will cycle through each testimonial every 5 seconds
+-->
+<section class="testimonials-section">
+  <div class="container">
+    <h2>What Our Users Say</h2>
+    <div class="testimonials-container">
+      <div class="testimonial-item active">
+        <div class="testimonial-content">
+          <p>"Promptify completely changed how I use AI. The prompt enhancement is incredible!"</p>
+          <div class="testimonial-author">
+            <strong>Sarah Johnson</strong>
+            <span>Marketing Director at TechCorp</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-item">
+        <div class="testimonial-content">
+          <p>"The smoothest interface I've ever used. Highly recommend to anyone working with AI."</p>
+          <div class="testimonial-author">
+            <strong>Michael Chen</strong>
+            <span>AI Research Engineer</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-item">
+        <div class="testimonial-content">
+          <p>"Best investment for my team. It saves us hours every week on prompt optimization."</p>
+          <div class="testimonial-author">
+            <strong>Emma Rodriguez</strong>
+            <span>Product Manager at StartupXYZ</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-item">
+        <div class="testimonial-content">
+          <p>"The animations are smooth, the UI is beautiful, and it actually works amazingly well."</p>
+          <div class="testimonial-author">
+            <strong>David Kim</strong>
+            <span>Content Creator</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+  3. PARALLAX SCROLLING EXAMPLE
+  Add data-parallax="0.5" to any element to make it move slower than scroll
+  0.5 = half speed, 0.3 = slower, 1 = normal speed, 1.5 = faster
+-->
+<section class="parallax-demo-section">
+  <div data-parallax="0.3" class="parallax-bg">
+    <!-- This element moves at 30% of scroll speed -->
+  </div>
+  <div class="parallax-content">
+    <h2>Parallax Scrolling Demo</h2>
+    <p>Scroll down to see the background move at a different speed</p>
+  </div>
+</section>
+
+<!-- 
+  4. FEATURE CARDS WITH REVEAL ANIMATION
+  Cards automatically fade in and slide up when scrolled into view
+  Add data-reveal to any element to enable this effect
+-->
+<section class="features-section">
+  <div class="container">
+    <h2>Amazing Features</h2>
+    <div class="features-grid">
+      <div class="feature-card" data-reveal>
+        <div class="feature-icon">⚡</div>
+        <h3>Lightning Fast</h3>
+        <p>Experience blazing fast prompt generation powered by our advanced AI models.</p>
+      </div>
+      <div class="feature-card" data-reveal>
+        <div class="feature-icon">🎯</div>
+        <h3>Precise Results</h3>
+        <p>Get exactly what you're looking for with our intelligent enhancement system.</p>
+      </div>
+      <div class="feature-card" data-reveal>
+        <div class="feature-icon">🔒</div>
+        <h3>Secure & Private</h3>
+        <p>Your data is encrypted and never shared. Complete privacy guaranteed.</p>
+      </div>
+      <div class="feature-card" data-reveal>
+        <div class="feature-icon">🌟</div>
+        <h3>Premium Quality</h3>
+        <p>Enterprise-grade prompts for professional results every single time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 
+  5. STYLING FOR ABOVE SECTIONS
+  Add this to your styles.css or create a new file for these styles
+-->
+<style>
+  /* Stats Section */
+  .stats-section {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, rgba(59,130,246,0.05), rgba(139,92,246,0.05));
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+  
+  .stat-card {
+    text-align: center;
+    padding: 30px;
+    background: rgba(15,23,42,0.6);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(139,92,246,0.4);
+    box-shadow: 0 12px 32px rgba(59,130,246,0.15);
+  }
+  
+  .stat-card h3 {
+    font-size: 2.5rem;
+    color: #3B82F6;
+    margin-bottom: 10px;
+  }
+  
+  /* Testimonials Section */
+  .testimonials-section {
+    padding: 60px 20px;
+  }
+  
+  .testimonials-container {
+    position: relative;
+    height: 300px;
+    margin-top: 40px;
+  }
+  
+  .testimonial-item {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.6s cubic-bezier(0.2, 0.9, 0.2, 1);
+  }
+  
+  .testimonial-item.active {
+    position: relative;
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .testimonial-content {
+    background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1));
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 12px;
+    padding: 40px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  
+  .testimonial-author {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .testimonial-author strong {
+    color: #3B82F6;
+    margin-bottom: 4px;
+  }
+  
+  .testimonial-author span {
+    color: #94A3B8;
+    font-size: 0.9rem;
+  }
+  
+  /* Features Section */
+  .features-section {
+    padding: 60px 20px;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+  
+  .feature-card {
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(139,92,246,0.08));
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(139,92,246,0.4);
+    box-shadow: 0 16px 40px rgba(59,130,246,0.15);
+  }
+  
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .feature-card h3 {
+    margin-bottom: 15px;
+    color: #E2E8F0;
+  }
+  
+  .feature-card p {
+    color: #94A3B8;
+    line-height: 1.6;
+  }
+  
+  /* Parallax Demo */
+  .parallax-demo-section {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .parallax-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(139,92,246,0.15));
+    z-index: -1;
+  }
+  
+  .parallax-content {
+    text-align: center;
+    color: #E2E8F0;
+  }
+  
+  .parallax-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .parallax-content p {
+    font-size: 1.2rem;
+    color: #94A3B8;
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .stats-section, .testimonials-section, .features-section {
+      padding: 40px 20px;
+    }
+    
+    .stat-card h3 {
+      font-size: 2rem;
+    }
+    
+    .testimonial-content {
+      padding: 24px;
+      font-size: 1rem;
+    }
+    
+    .feature-card {
+      padding: 24px;
+    }
+    
+    .parallax-demo-section {
+      height: 300px;
+    }
+  }
+</style>
+
+<!-- ============================================================================
+     QUICK REFERENCE - WHICH FEATURES DO WHAT
+     ============================================================================ -->
+
+<!--
+  FEATURE 1: Scroll Progress Bar
+  - Automatically shows at top of page
+  - No HTML needed - it's inserted via JavaScript
+  - No customization needed
+  - Just works!
+-->
+
+<!--
+  FEATURE 2: Back-to-Top Button
+  - Automatically appears when you scroll down 300px
+  - Positioned fixed bottom-right
+  - Click to smooth scroll to top
+  - No HTML needed - it's inserted via JavaScript
+-->
+
+<!--
+  FEATURE 3: Dual Particle System
+  - Automatically creates two canvas layers with particles
+  - Particles float, drift, and connect with lines
+  - No HTML needed - it's inserted via JavaScript
+  - Performance optimized (60fps)
+-->
+
+<!--
+  FEATURE 4: 3D Card Transforms
+  - Works on any element with these classes:
+    * .pricing-card
+    * .blog-card
+    * .gallery-item
+    * .feature-card
+  - Tilt on hover based on mouse position
+  - Automatically enabled
+-->
+
+<!--
+  FEATURE 5: Parallax Scrolling
+  - Add data-parallax="NUMBER" to any element
+  - NUMBER: 0.3 = slow, 0.5 = medium, 1 = normal, 1.5 = fast
+  - Optional - use only where you want it
+  - Example: <div data-parallax="0.5">Content here</div>
+-->
+
+<!--
+  FEATURE 6: Glitch Effects
+  - Automatically applied to .hero-title
+  - Glitches every 5 seconds
+  - Uses pink and blue color shifts
+  - No customization needed
+-->
+
+<!--
+  FEATURE 7: Magnetic Buttons
+  - Works on all <button> elements
+  - Buttons follow your cursor
+  - Automatic hover effect
+  - No customization needed
+-->
+
+<!--
+  FEATURE 8: Hero Glow Pulse
+  - Automatically added behind .hero-image-wrapper
+  - Pulsing blue glow that expands and contracts
+  - Creates depth effect
+  - No HTML needed
+-->
+
+<!--
+  FEATURE 9: Animated Counters
+  - Add data-count="NUMBER" to any element
+  - Will animate from 0 to NUMBER when scrolled into view
+  - Number auto-formats with thousands separator
+  - Example: <span data-count="1000">1000</span>
+-->
+
+<!--
+  FEATURE 10: Auto-Rotating Testimonials
+  - Requires .testimonials-container parent
+  - Children must be .testimonial-item
+  - Rotates every 5 seconds
+  - Smooth slide animation between items
+-->
+
+<!--
+  FEATURE 11: Scroll-Triggered Animations
+  - Elements with these classes auto-fade in on scroll:
+    * .pricing-card
+    * .blog-card
+    * .gallery-item
+    * .feature-card
+    * .contact-info-card
+    * [data-reveal] attribute
+  - Staggered animation (0s, 0.1s, 0.2s delays)
+  - Automatically enabled
+-->
+
+<!--
+  FEATURE 12: Ripple Effects
+  - Works on all <button> and <a> elements
+  - Elements with .clickable class
+  - Ripple expands from click point
+  - No customization needed
+-->
+
+<!-- End of examples -->

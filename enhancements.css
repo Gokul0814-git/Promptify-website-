@@ -1,0 +1,212 @@
+/* enhancements.css
+   Large collection of additive visual and interaction styles.
+   Purpose: advanced transitions, animated hero, particle z-index helpers,
+   animated badges, magnetic buttons, glitch layers, loading variants, and
+   style variables that extend the existing theme.
+*/
+
+:root {
+  --enhance-accent: rgba(59,130,246,0.12);
+  --cursor-size: 12px;
+  --cursor-bg: rgba(255,255,255,0.08);
+  --magnetic-strength: 18px;
+}
+
+/* Basic helpers */
+.enhance-hidden { opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; }
+.enhance-visible { opacity: 1; transform: translateY(0); }
+
+/* Animated hero code ribbon and tech lines */
+.hero-code-ribbon {
+  position: absolute;
+  left: 6%;
+  top: 6%;
+  z-index: 6;
+  pointer-events: none;
+  width: 40%;
+  max-width: 520px;
+  color: rgba(226,232,240,0.85);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 12px 40px rgba(2,6,23,0.45);
+  transform: translateZ(0);
+  animation: ribbonFloat 8s ease-in-out infinite;
+}
+@keyframes ribbonFloat {
+  0% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-12px) rotate(1deg); }
+  100% { transform: translateY(0) rotate(-1deg); }
+}
+
+/* Animated SVG halo for the hero */
+.hero-halo {
+  position: absolute;
+  inset: auto 6% 6% auto;
+  width: 240px;
+  height: 240px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.9;
+  filter: blur(28px) saturate(140%);
+  mix-blend-mode: screen;
+}
+
+/* Elevated badge styles */
+.enhance-badge {
+  display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
+  background: linear-gradient(90deg, rgba(59,130,246,0.14), rgba(139,92,246,0.12)); color:var(--text-light); font-weight:700; font-size:12px;
+  box-shadow: 0 6px 24px rgba(59,130,246,0.06);
+}
+
+/* Fancy large particle canvas container */
+.particle-layer {
+  position:absolute; inset:0; pointer-events:none; z-index:1; mix-blend-mode: screen; opacity:0.95;
+}
+
+/* ===== Tech Background Animations ===== */
+
+.tech-bg-container {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Floating code blocks */
+.floating-code-block {
+  position: absolute;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: rgba(59, 130, 246, 0.4);
+  padding: 8px 12px;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  animation: floatCode linear infinite;
+  white-space: nowrap;
+}
+@keyframes floatCode {
+  0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+  10% { opacity: 0.6; }
+  50% { opacity: 0.5; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-100vh) rotate(360deg) scale(1.1); opacity: 0; }
+}
+
+/* Orbiting particles */
+.tech-orbit {
+  position: absolute;
+  width: 120px; height: 120px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 50%;
+  animation: orbitSpin 8s linear infinite;
+}
+.tech-orbit::before {
+  content: '';
+  position: absolute;
+  width: 8px; height: 8px;
+  background: rgba(59, 130, 246, 0.6);
+  border-radius: 50%;
+  top: 0; left: 50%;
+  margin-left: -4px;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.8);
+}
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Moving diagonal lines */
+.tech-line {
+  position: absolute;
+  width: 200px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.4), transparent);
+  transform: rotate(45deg);
+  animation: slideLine 6s ease-in-out infinite;
+}
+@keyframes slideLine {
+  0% { transform: rotate(45deg) translateX(-300px); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: rotate(45deg) translateX(300px); opacity: 0; }
+}
+
+/* Pulse circles */
+.tech-pulse-circle {
+  position: absolute;
+  width: 60px; height: 60px;
+  border: 2px solid rgba(6, 182, 212, 0.3);
+  border-radius: 50%;
+  animation: pulseBg 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.tech-pulse-circle::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px solid rgba(236, 72, 153, 0.2);
+  border-radius: 50%;
+  animation: pulseBg 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulseBg {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.5; }
+}
+
+/* Magnetic CTA buttons */
+.btn-magnetic { position: relative; transition: transform 260ms cubic-bezier(.2,.9,.2,1); }
+.btn-magnetic:hover { transform: translateY(-4px) scale(1.02); }
+
+/* Glitch header style */
+.hero-title.glitch { position: relative; display:inline-block; }
+.hero-title.glitch::before, .hero-title.glitch::after {
+  content: attr(data-text); position:absolute; left:0; top:0; width:100%;
+}
+.hero-title.glitch::before { color: rgba(236,72,153,0.85); clip-path: inset(0 0 60% 0); transform: translate(-2px,-1px); opacity:0.9; }
+.hero-title.glitch::after { color: rgba(59,130,246,0.9); clip-path: inset(60% 0 0 0); transform: translate(2px,1px); opacity:0.85; }
+
+/* shimmer effect for images */
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::after { content:''; position:absolute; inset:0; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0) 100%); transform: translateX(-120%); animation: shimmerMove 1.8s linear infinite; }
+@keyframes shimmerMove { to { transform: translateX(120%);} }
+
+/* small utilities for enhanced interactions */
+.enhance-3d { transform-style: preserve-3d; perspective: 900px; }
+
+/* large set of reusable animation classes (appear/fade/slide) */
+.fade-in { animation: fadeIn 520ms ease both; }
+@keyframes fadeIn { from { opacity:0; transform: translateY(6px);} to { opacity:1; transform: translateY(0);} }
+
+.slide-left { animation: slideLeft 560ms cubic-bezier(.2,.9,.2,1) both; }
+@keyframes slideLeft { from { opacity:0; transform: translateX(14px);} to { opacity:1; transform: translateX(0);} }
+
+/* Responsiveness tweaks */
+@media (max-width: 900px) {
+  .hero-code-ribbon { display:none; }
+  .hero-halo { display:none; }
+}
+
+/* Mobile optimization for tech background */
+@media (max-width: 768px) {
+  .floating-code-block { font-size: 10px; padding: 4px 8px; }
+  .tech-orbit { width: 80px; height: 80px; }
+  .tech-line { width: 100px; }
+  .tech-pulse-circle { width: 40px; height: 40px; }
+}
+
+/* Additional visual components and long CSS chunk to increase 'enhancement' surface */
+/* The following rule-blocks provide many small variations used by the JS enhancer. */
+.enhance-variant-1 { background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.04)); }
+.enhance-variant-2 { background: linear-gradient(90deg, rgba(6,182,212,0.04), rgba(59,130,246,0.04)); }
+.enhance-variant-3 { border: 1px solid rgba(59,130,246,0.06); }
+
+/* Large block of subtle utility spacing & visual rules (this file intentionally contains a lot of rules to create the "enhanced" effect) */
+.helper-margin-top { margin-top: 12px; }
+.helper-margin-bottom { margin-bottom: 12px; }
+.helper-boost { filter: drop-shadow(0 18px 50px rgba(59,130,246,0.06)); }
+
+/* End of enhancements.css */
